@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Company.Add_Branch">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
+
+            <EditText
+                android:id="@+id/Branch_name"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:gravity="center"
+                android:textSize="18sp"
+                tools:hint="Branch Name"
+                android:layout_marginTop="20dp"/>
+
+
+
+            <EditText
+                android:id="@+id/Phone_number"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Phone number1"
+                android:inputType="phone"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:id="@+id/Phone_no2"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Phone number2"
+                android:inputType="phone"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                />
+            <EditText
+                android:id="@+id/br_email"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="phone"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                />
+            <EditText
+                android:id="@+id/B_address"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Address"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:id="@+id/brnch_uname"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Branch Username"
+                android:inputType="textPersonName"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText
+                android:id="@+id/brnch_pass"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Branch Password"
+                android:inputType="textPersonName"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                />
+            <EditText
+                android:id="@+id/CnfPWD"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Confirm Password"
+                android:inputType="textPersonName"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                />
+
+            <Button
+                android:id="@+id/butt_add"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:text="add branch"
+                android:layout_marginTop="20dp"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
