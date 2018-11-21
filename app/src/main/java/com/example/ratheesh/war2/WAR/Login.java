@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.inputmethod.InputMethodManager;
 
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.os.StrictMode;
 
@@ -47,9 +48,9 @@ import com.example.ratheesh.war2.R;
 public class Login extends AppCompatActivity {
 
 
-    String sessionType= getIntent().getStringExtra("Company");
-    String sessionUname= getIntent().getStringExtra("uname");
+
     JSONArray jsonArray;
+    JSONObject jsonObject;
 
     EditText usrname,pass;
     Button login,register;
@@ -57,15 +58,17 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        String sessionType= getIntent().getStringExtra("Company");
+        String sessionUname= getIntent().getStringExtra("uname");
 
         register = (Button) findViewById(R.id.register);
-        usrname = (EditText) findViewById(R.id.username);
+        usrname = (EditText) findViewById(R.id.usrname);
         pass = (EditText) findViewById(R.id.pass);
         login = (Button) findViewById(R.id.login);
 
 
-        //if
+        if(sessionType != null)
+            usrname.setText(sessionUname);
 
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -99,24 +102,11 @@ public class Login extends AppCompatActivity {
                                     String data = response.body().string();
 
                                      jsonArray = new JSONArray(data);
-                                    JSONObject jsonObject;
-
-
 
 
                                 } catch (JSONException e) {
 
-                                    AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                                    alertDialog.setTitle("Alert Category");
-                                    alertDialog.setMessage(e.getMessage());
-                                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int which) {
-
-                                                    dialog.dismiss();
-                                                }
-                                            });
-                                    alertDialog.show();
+                                    Toast.makeText(getApplicationContext(), "network Error ", Toast.LENGTH_SHORT).show();
                                 }
 
 
@@ -143,6 +133,69 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                try {
+                    int inde =0;
+                for(int i=0; i<jsonArray.length();i++){
+
+                        jsonObject = jsonArray.getJSONObject(i);
+                        if ((jsonObject.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject.getString("log_Pass").equals(pass.getText().toString()))){
+
+                               break;
+                            }
+
+                        else{
+                            pass.setError("Invalid username or password");
+
+                        }
+
+                    }
+                    if (jsonObject.getString("Log_Type").equals("Company")){
+                        AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
+                        alertDialog.setTitle("Alert Category");
+                        alertDialog.setMessage("Company Successfully logged");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+
+                    }
+                    else if(jsonObject.getString("Log_Type").equals("Branch")){
+                        AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
+                        alertDialog.setTitle("Alert Category");
+                        alertDialog.setMessage("Branch Successfully logged");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+
+                    }
+                    else if(jsonObject.getString("Log_Type").equals("Staff")){
+                        AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
+                        alertDialog.setTitle("Alert Category");
+                        alertDialog.setMessage("Staff Successfully logged");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        dialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
+
+                    }
+
+                    }catch (JSONException e) {
+                    e.printStackTrace();
+                    }
+
             }
         });
 
@@ -153,7 +206,8 @@ public class Login extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getBaseContext(), Register_Company.class);
+                startActivity(intent);
             }
         });
 

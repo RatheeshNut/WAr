@@ -45,6 +45,9 @@ public class Register_Company extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    JSONArray jsonArray1;
+    JSONObject jsonObject1;
+
     EditText cmpName, phon1, phon2, email, addres, usernam, pwd, cnfpwd;
     Button regstr;
     Spinner categoy;
@@ -86,6 +89,70 @@ public class Register_Company extends AppCompatActivity {
 
         // specify an adapter (see also next example)
 
+
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            OkHttpClient client = new OkHttpClient();
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/username.php").newBuilder();
+            String url = urlBuilder.build().toString();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, final Response response) throws IOException {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            try {
+
+                                try {
+                                    String data = response.body().string();
+
+                                    jsonArray1 = new JSONArray(data);
+
+
+                                } catch (JSONException e) {
+
+                                    Toast.makeText(getApplicationContext(), "Network Error " , Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+
+                ;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
+
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -115,24 +182,23 @@ public class Register_Company extends AppCompatActivity {
 
                             try {
                                 //txtInfo.setText(response.body().string());
-                                catNam.clear();
-                                catId.clear();
                                 try {
                                     String data = response.body().string();
 
                                     JSONArray jsonArray = new JSONArray(data);
                                     JSONObject jsonObject;
+                                    catNam.clear();
                                     for(int i=0; i<jsonArray.length();i++){
 
                                         jsonObject = jsonArray.getJSONObject(i);
                                         catNam.add(jsonObject.getString("cat_Name"));
-                                        catId.add(jsonObject.getString("cat_ID"));
+                                        //catId.add(jsonObject.getString("cat_ID"));
 
                                     }
 
                                     ArrayAdapter<String> adapter= new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, catNam);
                                     categoy.setAdapter(adapter);
-
+                                    Toast.makeText(getApplicationContext(),""+adapter.getCount(), Toast.LENGTH_SHORT).show();
                                 } catch (JSONException e) {
 
                                     AlertDialog alertDialog = new AlertDialog.Builder(Register_Company.this).create();
@@ -162,20 +228,31 @@ public class Register_Company extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        catNam.clear();
-        catId.clear();
+
         categoy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 // Notify the selected item text
 
-                cardviewList.add(selectedItemText);
-                cardcatID.add(position,selectedItemText);
+
+
+                for (int i=0; i<cardviewList.size();i++){
+
+                }
+                if(cardviewList.contains(selectedItemText)){
+
+                }
+                else {
+
+                    cardviewList.add(selectedItemText);
+                    // cardcatID.add(position,selectedItemText);
+
+                }
                 mAdapter = new MyAdapter(cardviewList);
                 catlist.setAdapter(mAdapter);
 
-                Toast.makeText(getApplicationContext(), "Selected : " + cardcatID, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), "Selected : " + cardcatID, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -195,8 +272,8 @@ public class Register_Company extends AppCompatActivity {
                 try {
 
                     String str = "";
-                    for (int i = 0; i < cardcatID.size(); i++) {
-                        str += cardcatID.get(i) + "\n";
+                    for (int i = 0; i < cardviewList.size(); i++) {
+                        str += cardviewList.get(i) + "\n";
                     }
 
                     if (cmpName.getText().toString().length() == 0) {
@@ -222,41 +299,53 @@ public class Register_Company extends AppCompatActivity {
                     }
                     else if(pwd.getText().toString().equals(cnfpwd.getText().toString())){
 
-                        if(matcherObj.matches()){
-
-                            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                            StrictMode.setThreadPolicy(policy);
-
-                            OkHttpClient client = new OkHttpClient();
-
-                            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/company_register.php").newBuilder();
-                            urlBuilder.addQueryParameter("Cmp_Name", cmpName.getText().toString());
-                            urlBuilder.addQueryParameter("Cmp_Phn1", phon1.getText().toString());
-                            urlBuilder.addQueryParameter("Cmp_Phn2", phon2.getText().toString());
-                            urlBuilder.addQueryParameter("Cmp_Email", email.getText().toString());
-                            urlBuilder.addQueryParameter("Cmp_Addrs", addres.getText().toString());
-                            urlBuilder.addQueryParameter("Cmp_Cat", str.toString());
-                            urlBuilder.addQueryParameter("Cmp_Uname", usernam.getText().toString());
-                            urlBuilder.addQueryParameter("Cmp_Pwd", pwd.getText().toString());
-
-                            String url = urlBuilder.build().toString();
-
-                            Request request = new Request.Builder()
-                                    .url(url)
-                                    .build();
-
-                            client.newCall(request).enqueue(new Callback() {
-                                @Override
-                                public void onFailure(Call call, IOException e) {
+                        if(matcherObj.matches()) {
+                            int stoper = 0;
+                            for (int i = 0; i < jsonArray1.length(); i++) {
+                                jsonObject1 = jsonArray1.getJSONObject(i);
+                                if (jsonObject1.getString("log_Username").equals(usernam.getText().toString())) {
+                                    stoper = 1;
+                                    break;
 
                                 }
+                            }
+                            if (stoper == 1) {
+                                usernam.setError("Username already exists");
+                            } else {
 
-                                @Override
-                                public void onResponse(Call call, final Response response) throws IOException {
+                                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                StrictMode.setThreadPolicy(policy);
 
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
+                                OkHttpClient client = new OkHttpClient();
+
+                                HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/company_register.php").newBuilder();
+                                urlBuilder.addQueryParameter("Cmp_Name", cmpName.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_Phn1", phon1.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_Phn2", phon2.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_Email", email.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_Addrs", addres.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_Cat", str.toString());
+                                urlBuilder.addQueryParameter("Cmp_Uname", usernam.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_Pwd", pwd.getText().toString());
+
+                                String url = urlBuilder.build().toString();
+
+                                Request request = new Request.Builder()
+                                        .url(url)
+                                        .build();
+
+                                client.newCall(request).enqueue(new Callback() {
+                                    @Override
+                                    public void onFailure(Call call, IOException e) {
+
+                                    }
+
+                                    @Override
+                                    public void onResponse(Call call, final Response response) throws IOException {
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
 
                                                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                                                 StrictMode.setThreadPolicy(policy);
@@ -287,11 +376,11 @@ public class Register_Company extends AppCompatActivity {
                                                         runOnUiThread(new Runnable() {
                                                             @Override
                                                             public void run() {
-
-                                                                    Intent intent = new Intent(getBaseContext(), Login.class);
-                                                                    intent.putExtra("Company", log_type);
-                                                                    intent.putExtra("uname", usernam.getText().toString());
-                                                                    startActivity(intent);
+                                                                Toast.makeText(getApplicationContext(), "Success " , Toast.LENGTH_SHORT).show();
+                                                                Intent intent = new Intent(getApplicationContext(), Login.class);
+                                                                intent.putExtra("Company", log_type);
+                                                                intent.putExtra("uname", usernam.getText().toString());
+                                                                startActivity(intent);
 
 
                                                             }
@@ -302,13 +391,14 @@ public class Register_Company extends AppCompatActivity {
                                                 });
 
 
-                                        }
-                                    });
-                                }
+                                            }
+                                        });
+                                    }
 
-                                ;
-                            });
+                                    ;
+                                });
 
+                            }
                         }
                         else {
                             email.setError("invalid email");
