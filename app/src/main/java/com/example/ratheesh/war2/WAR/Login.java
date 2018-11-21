@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
         login = (Button) findViewById(R.id.login);
 
 
-        if
+        //if
 
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
