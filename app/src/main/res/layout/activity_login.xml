@@ -36,25 +36,16 @@
         android:text="Login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp" />
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        android:layout_centerHorizontal="true"
-        android:hint="Not yet Member? "
-        android:inputType="textPassword"
-        android:layout_marginTop="250dp"/>
+
     <Button
         android:id="@+id/register"
         android:layout_width="110dp"
         android:layout_height="20dp"
-        android:gravity="center"
-        android:layout_marginTop="250dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
         android:background="@android:color/transparent"
-        />
+        android:gravity="center"
+        android:hint="Not yet Member? "
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

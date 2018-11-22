@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.example.ratheesh.war2.Company.Company_profile;
 import com.example.ratheesh.war2.Company.Register_Company;
 import com.example.ratheesh.war2.R;
 
@@ -150,17 +151,10 @@ public class Login extends AppCompatActivity {
 
                     }
                     if (jsonObject.getString("Log_Type").equals("Company")){
-                        AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                        alertDialog.setTitle("Alert Category");
-                        alertDialog.setMessage("Company Successfully logged");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        dialog.dismiss();
-                                    }
-                                });
-                        alertDialog.show();
+                        Toast.makeText(getApplicationContext(), "Logging " , Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), Company_profile.class);
+                        intent.putExtra("uname", usrname.getText().toString());
+                        startActivity(intent);
 
                     }
                     else if(jsonObject.getString("Log_Type").equals("Branch")){

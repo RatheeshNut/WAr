@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Company.Company_profile"
+    >
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="150dp"
+    >
+    <Button
+        android:id="@+id/branch"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Branch"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="129dp"
+        android:layout_marginLeft="20dp"/>
+    <Button
+        android:id="@+id/notification"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Notification"
+        tools:layout_editor_absoluteX="216dp"
+        tools:layout_editor_absoluteY="343dp"
+        android:layout_marginLeft="50dp"/>
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+       >
+
+    <Button
+        android:id="@+id/category"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="231dp"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:id="@+id/product"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Product"
+        tools:layout_editor_absoluteX="216dp"
+        tools:layout_editor_absoluteY="231dp"
+        android:layout_marginLeft="50dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_centerHorizontal="true">
+
+    <Button
+        android:id="@+id/sales"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Sales"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="343dp"
+        />
+
+
+
+    </LinearLayout>
+</RelativeLayout>

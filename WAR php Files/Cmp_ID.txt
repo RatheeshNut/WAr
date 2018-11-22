@@ -3,9 +3,9 @@
 $conn = mysqli_connect("localhost","16mca021", "1186", "16mca021");
 
 // $cmpname=$_GET['Cmp_name'];
-$cmpname='y';
+$cmpname="y";
 
-$records = mysqli_query($conn,"select Cmp_ID from company where Cmp_Uname='$cmpname'");
+$records = mysqli_query($conn,"select Cmp_ID from company where Cmp_name='$cmpname'");
 
 $data = $records;
 
