@@ -1,10 +1,10 @@
 <?php
 
 $conn = mysqli_connect("localhost","16mca021", "1186", "16mca021");
-$cmpname=$_GET['Cmp_Uname'];
+$brname=$_GET['Br_Uname'];
 
 
-$records = mysqli_query($conn,"select * from company where Cmp_Uname='$cmpname'");
+$records = mysqli_query($conn,"select * from branch where Cmp_Uname='$brname'");
 
 $data = array();
 while($row = mysqli_fetch_assoc($records))

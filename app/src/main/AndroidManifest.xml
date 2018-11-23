@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WAR.Login"
+        <activity
+            android:name=".WAR.Login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,10 @@
         <activity android:name=".Company.Register_Company" />
         <activity android:name=".Company.Add_Branch" />
         <activity android:name=".Company.Add_staff" />
-        <activity android:name=".Company.Company_profile"></activity>
+        <activity android:name=".Company.Company_profile" />
+        <activity android:name=".Branch.Branch_profile" />
+        <activity android:name=".Branch.Branch_profil" />
+        <activity android:name=".Branch.Add_Staff"></activity>
     </application>
 
 </manifest>

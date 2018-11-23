@@ -346,7 +346,7 @@ public class Register_Company extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-
+                                              //  Toast.makeText(getApplicationContext(), "Selected : " + response.body().toString(), Toast.LENGTH_SHORT).show();
                                                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                                                 StrictMode.setThreadPolicy(policy);
 
@@ -378,7 +378,6 @@ public class Register_Company extends AppCompatActivity {
                                                             public void run() {
                                                                 Toast.makeText(getApplicationContext(), "Success " , Toast.LENGTH_SHORT).show();
                                                                 Intent intent = new Intent(getApplicationContext(), Login.class);
-                                                                intent.putExtra("Company", log_type);
                                                                 intent.putExtra("uname", usernam.getText().toString());
                                                                 startActivity(intent);
 

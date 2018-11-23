@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        String sessionType= getIntent().getStringExtra("Company");
+
         String sessionUname= getIntent().getStringExtra("uname");
 
         register = (Button) findViewById(R.id.register);
@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
         login = (Button) findViewById(R.id.login);
 
 
-        if(sessionType != null)
+
             usrname.setText(sessionUname);
 
         try {
@@ -158,17 +158,9 @@ public class Login extends AppCompatActivity {
 
                     }
                     else if(jsonObject.getString("Log_Type").equals("Branch")){
-                        AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                        alertDialog.setTitle("Alert Category");
-                        alertDialog.setMessage("Branch Successfully logged");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        dialog.dismiss();
-                                    }
-                                });
-                        alertDialog.show();
+                        Intent intent = new Intent(getApplicationContext(), Company_profile.class);
+                        intent.putExtra("uname", usrname.getText().toString());
+                        startActivity(intent);
 
                     }
                     else if(jsonObject.getString("Log_Type").equals("Staff")){

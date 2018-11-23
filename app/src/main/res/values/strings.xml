@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WAR 2</string>
+    <string name="title_activity_branch_profile">Branch_profile</string>
 </resources>

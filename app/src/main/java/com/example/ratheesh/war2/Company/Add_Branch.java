@@ -1,6 +1,7 @@
 package com.example.ratheesh.war2.Company;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -17,21 +18,35 @@ import okhttp3.Response;
 import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Toast;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.example.ratheesh.war2.Branch.Branch_profil;
 import com.example.ratheesh.war2.R;
 import com.example.ratheesh.war2.R;
+import com.example.ratheesh.war2.WAR.Login;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Add_Branch extends AppCompatActivity {
 
     private EditText brnchname, brnchaddrs, phoneno1, phno2, branchuser, branchpass,email,cnfpwd;
     private Button addbutt;
+    String Cmp_id;
+    String log_type = "Branch";
+    JSONArray jsonArray1;
+    JSONObject jsonObject1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__branch);
+
+        String sessionUname= getIntent().getStringExtra("uname");
 
         brnchname = (EditText) findViewById(R.id.Branch_name);
         brnchaddrs = (EditText) findViewById(R.id.B_address);
@@ -43,17 +58,131 @@ public class Add_Branch extends AppCompatActivity {
         cnfpwd = (EditText) findViewById(R.id.CnfPWD);
         addbutt = (Button) findViewById(R.id.butt_add);
 
+
+
+
+
+
         // get company Cmp_ID   //
-        //                      //
-        //                      //
-        //                      //
-        //                      //
-        //                      //
-        //                      //
-        //stored into a variable//
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            OkHttpClient client = new OkHttpClient();
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/Cmp_ID.php").newBuilder();
+            urlBuilder.addQueryParameter("Cmp_Uname", sessionUname);
+            String url = urlBuilder.build().toString();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, final Response response) throws IOException {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            try {
+
+                                try {
+                                    String data = response.body().string();
+
+                                    JSONArray jsonArray = new JSONArray(data);
+                                    JSONObject jsonObject3;
+
+
+                                        jsonObject3 = jsonArray.getJSONObject(0);
+                                        Cmp_id = jsonObject3.getString("Cmp_ID");
+
+
+                                } catch (JSONException e) {
+
+                                    Toast.makeText(getApplicationContext(), "Network Error " , Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+
+                ;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(getApplicationContext(), " "+ Cmp_id , Toast.LENGTH_SHORT).show();
 
 
 
+
+
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            OkHttpClient client = new OkHttpClient();
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/username.php").newBuilder();
+            String url = urlBuilder.build().toString();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, final Response response) throws IOException {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            try {
+
+                                try {
+                                    String data = response.body().string();
+
+                                    jsonArray1 = new JSONArray(data);
+
+
+                                } catch (JSONException e) {
+
+                                    Toast.makeText(getApplicationContext(), "Network Error " , Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+
+                ;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //add button
 
         addbutt.setOnClickListener(new View.OnClickListener() {
@@ -86,69 +215,110 @@ public class Add_Branch extends AppCompatActivity {
                         branchpass.setError("password does not match");
 
                     }
-                    else if(!branchpass.getText().toString().equals(cnfpwd.getText().toString())){
+                    else if(branchpass.getText().toString().equals(cnfpwd.getText().toString())){
                         if(matcherObj.matches()){
-
-                            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                            StrictMode.setThreadPolicy(policy);
-
-                            OkHttpClient client = new OkHttpClient();
-
-                            // add Cmp_ID foreign key
-
-                            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/branch_add.php").newBuilder();
-                            urlBuilder.addQueryParameter("Br_Name", brnchname.getText().toString());
-                            urlBuilder.addQueryParameter("Br_Phn1", phoneno1.getText().toString());
-                            urlBuilder.addQueryParameter("Br_Phn2", phno2.getText().toString());
-                            urlBuilder.addQueryParameter("Br_Email", email.getText().toString());
-                            urlBuilder.addQueryParameter("Br_Adrs", brnchaddrs.getText().toString());
-                            urlBuilder.addQueryParameter("Br_Uname", branchuser.getText().toString());
-                            urlBuilder.addQueryParameter("Br_Pwd", branchpass.getText().toString());
-                            // urlBuilder.addQueryParameter("Cmp_ID", srting);
-
-
-                            String url = urlBuilder.build().toString();
-
-                            Request request = new Request.Builder()
-                                    .url(url)
-                                    .build();
-
-                            client.newCall(request).enqueue(new Callback() {
-                                @Override
-                                public void onFailure(Call call, IOException e) {
+                            int stoper = 0;
+                            for (int i = 0; i < jsonArray1.length(); i++) {
+                                jsonObject1 = jsonArray1.getJSONObject(i);
+                                if (jsonObject1.getString("log_Username").equals(brnchname.getText().toString())) {
+                                    stoper = 1;
+                                    break;
 
                                 }
+                            }
+                            if (stoper == 1) {
+                                brnchname.setError("Username already exists");
+                            } else {
 
-                                @Override
-                                public void onResponse(Call call, final Response response) throws IOException {
+                                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                StrictMode.setThreadPolicy(policy);
 
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
+                                OkHttpClient client = new OkHttpClient();
 
-                                            try {
+                                // add Cmp_ID foreign key
 
-                                                AlertDialog alertDialog = new AlertDialog.Builder(Add_Branch.this).create();
-                                                alertDialog.setTitle("Alert Insertion");
-                                                alertDialog.setMessage(response.body().string());
-                                                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                                        new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                dialog.dismiss();
+                                HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/branch_add.php").newBuilder();
+                                urlBuilder.addQueryParameter("Br_Name", brnchname.getText().toString());
+                                urlBuilder.addQueryParameter("Br_Phn1", phoneno1.getText().toString());
+                                urlBuilder.addQueryParameter("Br_Phn2", phno2.getText().toString());
+                                urlBuilder.addQueryParameter("Br_Email", email.getText().toString());
+                                urlBuilder.addQueryParameter("Br_Adrs", brnchaddrs.getText().toString());
+                                urlBuilder.addQueryParameter("Br_Uname", branchuser.getText().toString());
+                                urlBuilder.addQueryParameter("Br_Pwd", branchpass.getText().toString());
+                                urlBuilder.addQueryParameter("Cmp_ID", Cmp_id);
+
+
+                                String url = urlBuilder.build().toString();
+
+                                Request request = new Request.Builder()
+                                        .url(url)
+                                        .build();
+
+                                client.newCall(request).enqueue(new Callback() {
+                                    @Override
+                                    public void onFailure(Call call, IOException e) {
+
+                                    }
+
+                                    @Override
+                                    public void onResponse(Call call, final Response response) throws IOException {
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+////////////////////////////////////////////////////////
+
+                                                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                                StrictMode.setThreadPolicy(policy);
+
+                                                OkHttpClient client = new OkHttpClient();
+
+                                                HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/login.php").newBuilder();
+
+                                                urlBuilder.addQueryParameter("log_Username", branchuser.getText().toString());
+                                                urlBuilder.addQueryParameter("log_Pass", branchpass.getText().toString());
+                                                urlBuilder.addQueryParameter("Log_Type", log_type);
+
+                                                String url = urlBuilder.build().toString();
+
+                                                Request request = new Request.Builder()
+                                                        .url(url)
+                                                        .build();
+
+                                                client.newCall(request).enqueue(new Callback() {
+                                                    @Override
+                                                    public void onFailure(Call call, IOException e) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onResponse(Call call, final Response response) throws IOException {
+
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                Toast.makeText(getApplicationContext(), "Success ", Toast.LENGTH_SHORT).show();
+                                                                Intent intent = new Intent(getApplicationContext(), Branch_profil.class);
+                                                                intent.putExtra("uname", branchuser.getText().toString());
+                                                                startActivity(intent);
+
+
                                                             }
                                                         });
-                                                alertDialog.show();
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
+                                                    }
+
+                                                    ;
+                                                });
+                                                /////////////////////////////////////////
+
+
                                             }
+                                        });
+                                    }
 
-                                        }
-                                    });
-                                }
-
-                                ;
-                            });
-
+                                    ;
+                                });
+                            }
                         }
                         else {
                             email.setError("invalid email");
