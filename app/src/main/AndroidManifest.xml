@@ -11,8 +11,7 @@
         android:label="WaR"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".WAR.Login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -22,25 +21,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Company.Register_Company"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Company.Add_Branch"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Company.Add_staff"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Company.Company_profile"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Branch.Branch_profil"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Branch.Add_Staff"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Staff.Sales"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".Company.Register_Company"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Company.Add_Branch"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Company.Add_staff"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Company.Company_profile"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Branch.Branch_profil"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Branch.Add_Staff"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Staff.Sales"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Company.Add_product"
             android:label="@string/title_activity_add_product"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Staff.Staff_profile"></activity>
+        <activity android:name=".Staff.Staff_profile" />
+        <activity android:name=".Company.Add_Category"></activity>
     </application>
 
 </manifest>

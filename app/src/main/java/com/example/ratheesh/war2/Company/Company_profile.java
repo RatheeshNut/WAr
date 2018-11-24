@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ratheesh.war2.R;
+import com.example.ratheesh.war2.Staff.Sales;
 import com.example.ratheesh.war2.WAR.Login;
 
 import org.json.JSONArray;
@@ -73,12 +74,17 @@ public class Company_profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Category " , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Add_Category.class);
+                startActivity(intent);
             }
         });
         sales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "sales " , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Sales.class);
+                intent.putExtra("Cmp_uname", sessionUname);
+                startActivity(intent);
             }
         });
     }

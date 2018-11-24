@@ -42,9 +42,11 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.example.ratheesh.war2.Branch.Branch_profil;
 import com.example.ratheesh.war2.Company.Company_profile;
 import com.example.ratheesh.war2.Company.Register_Company;
 import com.example.ratheesh.war2.R;
+import com.example.ratheesh.war2.Staff.Staff_profile;
 
 public class Login extends AppCompatActivity {
 
@@ -158,23 +160,15 @@ public class Login extends AppCompatActivity {
 
                     }
                     else if(jsonObject.getString("Log_Type").equals("Branch")){
-                        Intent intent = new Intent(getApplicationContext(), Company_profile.class);
+                        Intent intent = new Intent(getApplicationContext(), Branch_profil.class);
                         intent.putExtra("uname", usrname.getText().toString());
                         startActivity(intent);
 
                     }
                     else if(jsonObject.getString("Log_Type").equals("Staff")){
-                        AlertDialog alertDialog = new AlertDialog.Builder(Login.this).create();
-                        alertDialog.setTitle("Alert Category");
-                        alertDialog.setMessage("Staff Successfully logged");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                        dialog.dismiss();
-                                    }
-                                });
-                        alertDialog.show();
+                        Intent intent = new Intent(getApplicationContext(), Staff_profile.class);
+                        intent.putExtra("uname", usrname.getText().toString());
+                        startActivity(intent);
 
                     }
 

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.ratheesh.war2.Company.Company_profile;
 import com.example.ratheesh.war2.R;
+import com.example.ratheesh.war2.Staff.Sales;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -128,6 +129,10 @@ public class Branch_profil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Sales " , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Sales.class);
+                intent.putExtra("br_id", Br_id);
+                intent.putExtra("cmp_id", Cmp_id);
+                startActivity(intent);
             }
         });
 

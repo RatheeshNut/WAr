@@ -28,12 +28,13 @@ public class Staff_profile extends AppCompatActivity {
     Button notification,profile,sale;
     String Cmp_id;
     String Br_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_profile);
 
-        final String branchname= getIntent().getStringExtra("uname");
+        final String sf_name= getIntent().getStringExtra("uname");
 
         notification = (Button) findViewById(R.id.snotification1);
         profile = (Button) findViewById(R.id.sprofile);
@@ -46,8 +47,8 @@ public class Staff_profile extends AppCompatActivity {
 
             OkHttpClient client = new OkHttpClient();
 
-            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/Br_ID.php").newBuilder();
-            urlBuilder.addQueryParameter("Br_Uname", branchname);
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/Sf_ID.php").newBuilder();
+            urlBuilder.addQueryParameter("Sf_uname", sf_name);
             String url = urlBuilder.build().toString();
 
             Request request = new Request.Builder()
@@ -112,8 +113,8 @@ public class Staff_profile extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Sales " , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Sales.class);
-                intent.putExtra("br_id", Br_id);
-                intent.putExtra("cmp_id", Cmp_id);
+                intent.putExtra("cmp_id",Cmp_id);
+                intent.putExtra("br_id",Br_id);
                 startActivity(intent);
             }
         });

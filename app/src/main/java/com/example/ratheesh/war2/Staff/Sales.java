@@ -72,9 +72,12 @@ public class Sales extends AppCompatActivity {
         extwarr=findViewById(R.id.extwrnt_date);
         notification=(Spinner)findViewById(R.id.remains);
 
-        final String Br_id= getIntent().getStringExtra("br_id");
+        String Br_id= getIntent().getStringExtra("br_id");
         final String Cmp_id= getIntent().getStringExtra("cmp_id");
-
+        if(Br_id.isEmpty()) {
+            Br_id="";
+            sf_id="";
+        }
 
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -83,8 +86,7 @@ public class Sales extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
 
             HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/Sf_ID.php").newBuilder();
-            urlBuilder.addQueryParameter("Cmp_ID", Cmp_id);
-            urlBuilder.addQueryParameter("Br_ID", Br_id);
+            urlBuilder.addQueryParameter("Sf_uname", sf_id);
             String url = urlBuilder.build().toString();
 
             Request request = new Request.Builder()
@@ -341,7 +343,7 @@ public class Sales extends AppCompatActivity {
             ////////////////
 
 
-
+        final String finalBr_id = Br_id;
         saveb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -364,7 +366,7 @@ public class Sales extends AppCompatActivity {
                 urlBuilder.addQueryParameter("Sale_ext", extwarr.getText().toString());
                 urlBuilder.addQueryParameter("Sale_remanid", remainder.toString());
                 urlBuilder.addQueryParameter("Cmp_ID",Cmp_id);
-                urlBuilder.addQueryParameter("Br_ID", Br_id);
+                urlBuilder.addQueryParameter("Br_ID", finalBr_id);
                 urlBuilder.addQueryParameter("sf_ID", sf_id);
 
 
