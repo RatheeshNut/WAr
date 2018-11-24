@@ -42,7 +42,8 @@ public class Add_Staff extends AppCompatActivity {
 
         final String Br_id= getIntent().getStringExtra("br_id");
         final String Cmp_id= getIntent().getStringExtra("cmp_id");
-
+        Toast.makeText(getApplicationContext(), "Selected : " + Br_id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Selected : " + Cmp_id, Toast.LENGTH_SHORT).show();
         add_staff = (Button) findViewById(R.id.addstaff);
         Staff_name = (EditText) findViewById(R.id.staff_name);
         staffno = (EditText) findViewById(R.id.staff_phn_no);

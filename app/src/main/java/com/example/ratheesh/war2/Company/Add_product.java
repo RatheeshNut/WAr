@@ -218,7 +218,7 @@ public class Add_product extends AppCompatActivity {
 
                     }
 
-                    else if(productdesc.getText().toString().length() == 0){
+                    else if(productdesc.getText().toString().length() > 0){
 
 
                         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -251,9 +251,10 @@ public class Add_product extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                         Toast.makeText(getApplicationContext(), "Successfull added : " +productname, Toast.LENGTH_SHORT).show();
+                                         Toast.makeText(getApplicationContext(), "Successfull added : " + productname, Toast.LENGTH_SHORT).show();
 
-
+                                        Intent intent = new Intent(getApplicationContext(), Company_profile.class);
+                                        startActivity(intent);
 
 
 

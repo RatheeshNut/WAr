@@ -35,6 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         MyViewHolder vh = new MyViewHolder(itemLayoutView);
         return vh;
+
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -43,6 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.mTextView.setText(mDataset.get(position));
+
 
     }
 

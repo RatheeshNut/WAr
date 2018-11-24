@@ -1,5 +1,6 @@
 package com.example.ratheesh.war2.Company;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,7 +62,8 @@ public class Add_Category extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Toast.makeText(getApplicationContext(), "Successfull added : " +txt.getText().toString(), Toast.LENGTH_SHORT).show();
-
+                                Intent intent = new Intent(getApplicationContext(), Company_profile.class);
+                                startActivity(intent);
 
 
 

@@ -27,7 +27,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class Company_profile extends AppCompatActivity {
-    private Button branch,notification,product,category,sales;
+    private Button branch,notification,product,category,sales,profilec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class Company_profile extends AppCompatActivity {
         product = (Button) findViewById(R.id.product);
         category = (Button) findViewById(R.id.category);
         sales = (Button) findViewById(R.id.sales);
+        profilec = (Button) findViewById(R.id.profilecmp);
 
 
 
@@ -82,6 +83,15 @@ public class Company_profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "sales " , Toast.LENGTH_SHORT).show();
+              /* Intent intent = new Intent(getApplicationContext(), Sales.class);
+                intent.putExtra("cmp_id", sessionUname);
+                startActivity(intent);*/
+            }
+        });
+        profilec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "profile " , Toast.LENGTH_SHORT).show();
               /* Intent intent = new Intent(getApplicationContext(), Sales.class);
                 intent.putExtra("cmp_id", sessionUname);
                 startActivity(intent);*/

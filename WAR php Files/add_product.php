@@ -6,12 +6,12 @@ $prname=$_GET['Pr_name'];
 $prprice=$_GET['Pr_price'];
 $prdesc=$_GET['Pr_desc'];
 $prcat=$_GET['Pr_catname'];
-$cmp_ID=$_GET['Cmp_ID'];
-$Cmp_ID=(int)$Cmp_ID;
+$pcmp_ID=$_GET['Cmp_ID'];
+$pcmp_ID=(int)$pcmp_ID;
 $prprice=(int)$prprice;
 
 
-$query = "insert into product (Pr_name, Pr_price, Pr_desc, Pr_catname, Cmp_ID) values ('".$prname."',".$prprice.",'".$prdesc."',".$cmp_ID.")";
+$query = "insert into product (Pr_name, Pr_price, Pr_desc, Pr_catname, Cmp_ID) values ('".$prname."',".$prprice.",'".$prdesc."','".$prcat."',".$pcmp_ID.")";
 
 if(mysqli_query($conn, $query))
 {

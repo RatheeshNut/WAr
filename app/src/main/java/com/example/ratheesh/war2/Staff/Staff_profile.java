@@ -34,12 +34,12 @@ public class Staff_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_profile);
 
-        final String sf_name= getIntent().getStringExtra("uname");
+        final String sf_name= getIntent().getStringExtra("suname");
 
         notification = (Button) findViewById(R.id.snotification1);
         profile = (Button) findViewById(R.id.sprofile);
         sale = (Button) findViewById(R.id.ssales);
-
+        Toast.makeText(getApplicationContext(), "Selected : " + sf_name, Toast.LENGTH_SHORT).show();
 
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

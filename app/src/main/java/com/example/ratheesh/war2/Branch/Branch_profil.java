@@ -36,7 +36,7 @@ public class Branch_profil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch_profil);
 
-        final String branchname= getIntent().getStringExtra("uname");
+        final String branchname= getIntent().getStringExtra("bruname");
 
 
         staff = (Button) findViewById(R.id.staff);
@@ -44,7 +44,7 @@ public class Branch_profil extends AppCompatActivity {
         profile = (Button) findViewById(R.id.profile);
         sale = (Button) findViewById(R.id.sales);
 
-
+        Toast.makeText(getApplicationContext(), "Selected : " + branchname, Toast.LENGTH_LONG).show();
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -107,11 +107,13 @@ public class Branch_profil extends AppCompatActivity {
         }
 
 
-
+        Toast.makeText(getApplicationContext(), "Selected : " + Br_id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Selected : " + Cmp_id, Toast.LENGTH_SHORT).show();
 
         staff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(getApplicationContext(), "staff " , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Add_Staff.class);
                 intent.putExtra("br_id", Br_id);

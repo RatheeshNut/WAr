@@ -52,8 +52,8 @@ public class Login extends AppCompatActivity {
 
 
 
-    JSONArray jsonArray;
-    JSONObject jsonObject;
+    JSONArray jsonArray12;
+    JSONObject jsonObject12;
 
     EditText usrname,pass;
     Button login,register;
@@ -65,8 +65,8 @@ public class Login extends AppCompatActivity {
         String sessionUname= getIntent().getStringExtra("uname");
 
         register = (Button) findViewById(R.id.register);
-        usrname = (EditText) findViewById(R.id.usrname);
-        pass = (EditText) findViewById(R.id.pass);
+        usrname = (EditText) findViewById(R.id.usrname1);
+        pass = (EditText) findViewById(R.id.pas1);
         login = (Button) findViewById(R.id.login);
 
 
@@ -104,9 +104,9 @@ public class Login extends AppCompatActivity {
                                 try {
                                     String data = response.body().string();
 
-                                     jsonArray = new JSONArray(data);
+                                     jsonArray12 = new JSONArray(data);
 
-
+                                    Toast.makeText(getApplicationContext(), "Logging "+jsonArray12.length() , Toast.LENGTH_LONG).show();
                                 } catch (JSONException e) {
 
                                     Toast.makeText(getApplicationContext(), "network Error ", Toast.LENGTH_SHORT).show();
@@ -137,38 +137,33 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                    int inde =0;
-                for(int i=0; i<jsonArray.length();i++){
+                    int i;
+                for(i=0; i<jsonArray12.length();i++) {
 
-                        jsonObject = jsonArray.getJSONObject(i);
-                        if ((jsonObject.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject.getString("log_Pass").equals(pass.getText().toString()))) {
-
-                            break;
-                        }
+                    jsonObject12 = jsonArray12.getJSONObject(i);
+                    if ((jsonObject12.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject12.getString("log_Pass").equals(pass.getText().toString())) && (jsonObject12.getString("Log_Type").equals("Company"))) {
+                        Toast.makeText(getApplicationContext(), "Logging " + jsonObject12.getString("log_Username"), Toast.LENGTH_LONG).show();
+                        Intent intent1 = new Intent(getApplicationContext(), Company_profile.class);
+                        intent1.putExtra("uname", usrname.getText().toString());
+                        startActivity(intent1);
+                    } else if ((jsonObject12.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject12.getString("log_Pass").equals(pass.getText().toString())) && (jsonObject12.getString("Log_Type").equals("Branch"))) {
+                        Toast.makeText(getApplicationContext(), "Logging " + jsonObject12.getString("log_Username"), Toast.LENGTH_LONG).show();
+                        Intent intent2 = new Intent(getApplicationContext(), Branch_profil.class);
+                        intent2.putExtra("bruname",  usrname.getText().toString());
+                        startActivity(intent2);
+                    } else if ((jsonObject12.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject12.getString("log_Pass").equals(pass.getText().toString())) && (jsonObject12.getString("Log_Type").equals("Staff"))) {
+                        Toast.makeText(getApplicationContext(), "Logging " + jsonObject12.getString("log_Username"), Toast.LENGTH_LONG).show();
+                        Intent intent3 = new Intent(getApplicationContext(), Staff_profile.class);
+                        intent3.putExtra("suname",  usrname.getText().toString());
+                        startActivity(intent3);
 
                     }
-                    if(jsonArray.length()==(inde+1))
+
+
+                }
+
                         pass.setError("Invalid username or password");
 
-                    if (jsonObject.getString("Log_Type").equals("Company")){
-                      //  Toast.makeText(getApplicationContext(), "Logging " , Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), Company_profile.class);
-                        intent.putExtra("uname", usrname.getText().toString());
-                        startActivity(intent);
-
-                    }
-                    else if(jsonObject.getString("Log_Type").equals("Branch")){
-                        Intent intent = new Intent(getApplicationContext(), Branch_profil.class);
-                        intent.putExtra("uname", usrname.getText().toString());
-                        startActivity(intent);
-
-                    }
-                    else if(jsonObject.getString("Log_Type").equals("Staff")){
-                        Intent intent = new Intent(getApplicationContext(), Staff_profile.class);
-                        intent.putExtra("uname", usrname.getText().toString());
-                        startActivity(intent);
-
-                    }
 
                     }catch (JSONException e) {
                     e.printStackTrace();
