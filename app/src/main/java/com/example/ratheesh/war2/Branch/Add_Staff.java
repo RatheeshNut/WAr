@@ -35,15 +35,18 @@ public class Add_Staff extends AppCompatActivity {
     JSONArray jsonArray1;
     JSONObject jsonObject1;
     String log_type = "Staff";
+    String Cmp_id;
+    String Br_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__staff);
+        final String session1= getIntent().getStringExtra("br_id");
+        final String session2= getIntent().getStringExtra("cmp_id");
 
-        final String Br_id= getIntent().getStringExtra("br_id");
-        final String Cmp_id= getIntent().getStringExtra("cmp_id");
-        Toast.makeText(getApplicationContext(), "Selected : " + Br_id, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), "Selected : " + Cmp_id, Toast.LENGTH_SHORT).show();
+       // final String Cmp_id= getIntent().getStringExtra("cmp_id");
+       // Toast.makeText(getApplicationContext(), "Selected : " + Br_id, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(), "Selected : " + Cmp_id, Toast.LENGTH_SHORT).show();
         add_staff = (Button) findViewById(R.id.addstaff);
         Staff_name = (EditText) findViewById(R.id.staff_name);
         staffno = (EditText) findViewById(R.id.staff_phn_no);
@@ -55,6 +58,8 @@ public class Add_Staff extends AppCompatActivity {
         Staff_name.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(Staff_name, InputMethodManager.SHOW_IMPLICIT);
+
+
 
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -163,8 +168,8 @@ public class Add_Staff extends AppCompatActivity {
                                 urlBuilder.addQueryParameter("Sf_email", staff_email.getText().toString());
                                 urlBuilder.addQueryParameter("Sf_uname", staff_usernam.getText().toString());
                                 urlBuilder.addQueryParameter("Sf_pass", staff_pwd.getText().toString());
-                                urlBuilder.addQueryParameter("Cmp_ID",Cmp_id);
-                                urlBuilder.addQueryParameter("Br_ID", Br_id);
+                                urlBuilder.addQueryParameter("Cmp_ID",session2);
+                                urlBuilder.addQueryParameter("Br_ID", session1);
 
 
                                 String url = urlBuilder.build().toString();
