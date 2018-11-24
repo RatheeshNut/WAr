@@ -83,7 +83,7 @@ public class Company_profile extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "sales " , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Sales.class);
-                intent.putExtra("Cmp_uname", sessionUname);
+                intent.putExtra("cmp_id", sessionUname);
                 startActivity(intent);
             }
         });

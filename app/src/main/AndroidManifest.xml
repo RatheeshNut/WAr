@@ -46,8 +46,10 @@
             android:name=".Company.Add_product"
             android:label="@string/title_activity_add_product"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Staff.Staff_profile" />
-        <activity android:name=".Company.Add_Category"></activity>
+        <activity android:name=".Staff.Staff_profile"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Company.Add_Category"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

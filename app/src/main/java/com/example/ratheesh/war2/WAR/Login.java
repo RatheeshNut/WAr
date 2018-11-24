@@ -141,17 +141,15 @@ public class Login extends AppCompatActivity {
                 for(int i=0; i<jsonArray.length();i++){
 
                         jsonObject = jsonArray.getJSONObject(i);
-                        if ((jsonObject.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject.getString("log_Pass").equals(pass.getText().toString()))){
+                        if ((jsonObject.getString("log_Username").equals(usrname.getText().toString())) && (jsonObject.getString("log_Pass").equals(pass.getText().toString()))) {
 
-                               break;
-                            }
-
-                        else{
-                            pass.setError("Invalid username or password");
-
+                            break;
                         }
 
                     }
+                    if(jsonArray.length()==(inde+1))
+                        pass.setError("Invalid username or password");
+
                     if (jsonObject.getString("Log_Type").equals("Company")){
                       //  Toast.makeText(getApplicationContext(), "Logging " , Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Company_profile.class);
