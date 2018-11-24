@@ -49,7 +49,8 @@
         <activity android:name=".Staff.Staff_profile"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Company.Add_Category"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

@@ -304,8 +304,7 @@ public class Add_Branch extends AppCompatActivity {
                                                             @Override
                                                             public void run() {
                                                                 Toast.makeText(getApplicationContext(), "Success ", Toast.LENGTH_SHORT).show();
-                                                                Intent intent = new Intent(getApplicationContext(), Branch_profil.class);
-                                                                intent.putExtra("uname", branchuser.getText().toString());
+                                                                Intent intent = new Intent(getApplicationContext(), Company_profile.class);
                                                                 startActivity(intent);
 
 

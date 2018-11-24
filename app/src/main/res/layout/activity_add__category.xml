@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Category Name"
          android:layout_marginTop="130dp"
         android:gravity="center"
         android:layout_centerHorizontal="true"/>
