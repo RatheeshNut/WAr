@@ -49,7 +49,7 @@
                 android:gravity="center"
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="phone"
+                android:inputType="text"
                 android:layout_marginTop="20dp"/>
 
             <EditText
@@ -71,7 +71,7 @@
                 android:gravity="center"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:layout_marginTop="20dp"/>
             <EditText
                 android:id="@+id/cnfpasswrd"
@@ -81,7 +81,7 @@
                 android:gravity="center"
                 android:ems="10"
                 android:hint="Confirm Password"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:layout_marginTop="20dp"/>
 
             <Button
