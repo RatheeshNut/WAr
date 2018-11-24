@@ -6,7 +6,7 @@ $cname=$_GET['cat_Name'];
 
 
 
-$query = "insert into product (cat_Name) values ('".$cname."')";
+$query = "insert into category (cat_Name) values ('".$cname."')";
 
 if(mysqli_query($conn, $query))
 {

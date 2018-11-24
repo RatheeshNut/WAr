@@ -162,6 +162,7 @@ public class Add_product extends AppCompatActivity {
                                     for(int i=0; i<jsonArray.length();i++){
 
                                         jsonObject = jsonArray.getJSONObject(i);
+                                        catNam.add(jsonObject.getString("cat_Name"));
 
 
                                     }
