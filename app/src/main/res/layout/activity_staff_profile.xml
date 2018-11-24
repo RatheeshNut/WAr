@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Staff.Staff_profile">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+       android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/snotification1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Notification"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        >
+
+        <Button
+            android:id="@+id/sprofile"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="profile"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="231dp"
+            android:layout_marginLeft="20dp"/>
+
+        <Button
+            android:id="@+id/ssales"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Sales"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="343dp"
+            android:layout_marginLeft="50dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

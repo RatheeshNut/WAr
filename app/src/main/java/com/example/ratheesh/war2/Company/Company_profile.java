@@ -64,6 +64,9 @@ public class Company_profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "product " , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Add_product.class);
+                intent.putExtra("Cmp_uname", sessionUname);
+                startActivity(intent);
             }
         });
         category.setOnClickListener(new View.OnClickListener() {
