@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Staff.Sales">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/prdt_name"
+            android:layout_width="227dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            />
+
+        <EditText
+            android:id="@+id/Sale_nme"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            />
+
+        <EditText
+            android:id="@+id/Sale_price"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            android:ems="10"
+            android:hint="Price"
+            android:inputType="textPersonName"
+            />
+
+        <EditText
+            android:id="@+id/Sale_cat"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            android:ems="10"
+            android:hint="Category"
+            android:inputType="textPersonName"
+
+            />
+
+        <EditText
+            android:id="@+id/sale_cust_name"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            android:ems="10"
+            android:hint="Customer Name"
+            />
+
+        <EditText
+            android:id="@+id/sale_cust_addrs"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textPersonName"
+             />
+
+        <EditText
+            android:id="@+id/Sale_cust_ph"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+             />
+        <EditText
+            android:id="@+id/sale_date"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Sale date"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            />
+        <EditText
+            android:id="@+id/warr_date"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="warranty date"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            />
+        <EditText
+            android:id="@+id/extwrnt_date"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Extended warranty date"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            />
+        <Button
+            android:id="@+id/Add_sale"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:text="Add sale"
+            android:inputType="textPersonName"
+            />
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

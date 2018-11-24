@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity {
 
                     }
                     if (jsonObject.getString("Log_Type").equals("Company")){
-                        Toast.makeText(getApplicationContext(), "Logging " , Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getApplicationContext(), "Logging " , Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Company_profile.class);
                         intent.putExtra("uname", usrname.getText().toString());
                         startActivity(intent);

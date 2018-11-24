@@ -271,9 +271,9 @@ public class Register_Company extends AppCompatActivity {
                 Matcher matcherObj = Pattern.compile(validemail).matcher(Vemail);
                 try {
 
-                    String str = "";
+                   String str = "";
                     for (int i = 0; i < cardviewList.size(); i++) {
-                        str += cardviewList.get(i) + "\n";
+                        str += cardviewList.get(i) + " ";
                     }
 
                     if (cmpName.getText().toString().length() == 0) {

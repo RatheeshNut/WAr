@@ -1,10 +1,12 @@
 package com.example.ratheesh.war2.Branch;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,7 +51,9 @@ public class Add_Staff extends AppCompatActivity {
         staff_pwd = (EditText) findViewById(R.id.staff_passwrd);
         staff_cnfpwd = (EditText) findViewById(R.id.staff_comfipasswrd);
 
-
+        Staff_name.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(Staff_name, InputMethodManager.SHOW_IMPLICIT);
 
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

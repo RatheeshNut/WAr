@@ -27,7 +27,12 @@
         <activity android:name=".Company.Company_profile" />
         <activity android:name=".Branch.Branch_profile" />
         <activity android:name=".Branch.Branch_profil" />
-        <activity android:name=".Branch.Add_Staff"></activity>
+        <activity android:name=".Branch.Add_Staff" />
+        <activity android:name=".Staff.Sales" />
+        <activity
+            android:name=".Company.Add_product"
+            android:label="@string/title_activity_add_product"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

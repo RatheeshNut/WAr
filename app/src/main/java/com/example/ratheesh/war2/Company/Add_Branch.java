@@ -1,9 +1,11 @@
 package com.example.ratheesh.war2.Company;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.os.StrictMode;
@@ -40,13 +42,15 @@ public class Add_Branch extends AppCompatActivity {
     String log_type = "Branch";
     JSONArray jsonArray1;
     JSONObject jsonObject1;
+    JSONArray jsonArray4;
+    JSONObject jsonObject3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__branch);
 
-        String sessionUname= getIntent().getStringExtra("uname");
+        final String cmpUname = getIntent().getStringExtra("Cmp_uname");
 
         brnchname = (EditText) findViewById(R.id.Branch_name);
         brnchaddrs = (EditText) findViewById(R.id.B_address);
@@ -58,8 +62,10 @@ public class Add_Branch extends AppCompatActivity {
         cnfpwd = (EditText) findViewById(R.id.CnfPWD);
         addbutt = (Button) findViewById(R.id.butt_add);
 
-
-
+        brnchname.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(brnchname, InputMethodManager.SHOW_IMPLICIT);
+        Toast.makeText(getApplicationContext(), "" + cmpUname , Toast.LENGTH_LONG).show();
 
 
 
@@ -71,7 +77,7 @@ public class Add_Branch extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
 
             HttpUrl.Builder urlBuilder = HttpUrl.parse("http://117.193.161.207/16mca021/WAR/Cmp_ID.php").newBuilder();
-            urlBuilder.addQueryParameter("Cmp_Uname", sessionUname);
+            urlBuilder.addQueryParameter("Cmp_Uname", cmpUname);
             String url = urlBuilder.build().toString();
 
             Request request = new Request.Builder()
@@ -96,12 +102,10 @@ public class Add_Branch extends AppCompatActivity {
                                 try {
                                     String data = response.body().string();
 
-                                    JSONArray jsonArray = new JSONArray(data);
-                                    JSONObject jsonObject3;
+                                    jsonArray4 = new JSONArray(data);
+                                    jsonObject3 = jsonArray4.getJSONObject(0);
+                                    Toast.makeText(getApplicationContext(), " "+ jsonObject3.getString("Cmp_ID") , Toast.LENGTH_SHORT).show();
 
-
-                                        jsonObject3 = jsonArray.getJSONObject(0);
-                                        Cmp_id = jsonObject3.getString("Cmp_ID");
 
 
                                 } catch (JSONException e) {
@@ -124,7 +128,7 @@ public class Add_Branch extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Toast.makeText(getApplicationContext(), " "+ Cmp_id , Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), ""+ Cmp_id , Toast.LENGTH_SHORT).show();
 
 
 
@@ -220,16 +224,17 @@ public class Add_Branch extends AppCompatActivity {
                             int stoper = 0;
                             for (int i = 0; i < jsonArray1.length(); i++) {
                                 jsonObject1 = jsonArray1.getJSONObject(i);
-                                if (jsonObject1.getString("log_Username").equals(brnchname.getText().toString())) {
+                                if (jsonObject1.getString("log_Username").equals(branchuser.getText().toString())) {
                                     stoper = 1;
                                     break;
 
                                 }
                             }
                             if (stoper == 1) {
-                                brnchname.setError("Username already exists");
+                                branchuser.setError("Username already exists");
                             } else {
-
+                                jsonObject3 = jsonArray4.getJSONObject(0);
+                                Toast.makeText(getApplicationContext(), " "+ jsonObject3.getString("Cmp_ID") , Toast.LENGTH_SHORT).show();
                                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                                 StrictMode.setThreadPolicy(policy);
 
@@ -245,7 +250,8 @@ public class Add_Branch extends AppCompatActivity {
                                 urlBuilder.addQueryParameter("Br_Adrs", brnchaddrs.getText().toString());
                                 urlBuilder.addQueryParameter("Br_Uname", branchuser.getText().toString());
                                 urlBuilder.addQueryParameter("Br_Pwd", branchpass.getText().toString());
-                                urlBuilder.addQueryParameter("Cmp_ID", Cmp_id);
+                                urlBuilder.addQueryParameter("Cmp_ID", jsonObject3.getString("Cmp_ID"));
+
 
 
                                 String url = urlBuilder.build().toString();
